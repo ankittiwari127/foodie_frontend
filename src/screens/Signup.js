@@ -1,8 +1,9 @@
  import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+ import { Link,useNavigate } from 'react-router-dom';
  
  function Signup() {
     const [credentials,setcredentials]=useState({name:"",email:"",password:"",geolocation:""})
+    let navigate=useNavigate();
    const handleSubmit=async(e)=>{
     e.preventDefault();
     const response= await fetch("https://foodie-backend-g7ww.onrender.com/api/createuser",{
@@ -17,6 +18,7 @@ import { Link } from 'react-router-dom';
     if(!json.success){
         alert('Enter valid Credentials');
     }
+    navigate("/");
    }
    const onChange=(event)=>{
     setcredentials({...credentials,[event.target.name]:event.target.value})
